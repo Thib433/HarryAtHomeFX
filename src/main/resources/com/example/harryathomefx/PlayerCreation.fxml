@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="windows" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.harryathomefx.PlayerCreationController">
+   <children>
+      <ImageView fitHeight="504.0" fitWidth="840.0" layoutX="-22.0" pickOnBounds="true">
+         <image>
+            <Image url="@font.jpg" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" prefHeight="84.0" prefWidth="414.0" text="Wizard Création" textFill="#f7eb00">
+         <font>
+            <Font name="Harrington" size="48.0" />
+         </font>
+      </Label>
+      <TextField fx:id="namefield" layoutX="273.0" layoutY="144.0" prefHeight="38.0" prefWidth="262.0" style="-fx-background-color: #F5DEB3; -fx-border-color: #964B00;">
+         <font>
+            <Font name="Harrington" size="20.0" />
+         </font></TextField>
+      <Label alignment="CENTER" layoutX="310.0" layoutY="106.0" prefHeight="38.0" prefWidth="202.0" text="Wizard name" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Harrington" size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="namebutton" layoutX="535.0" layoutY="145.0" mnemonicParsing="false" onAction="#onNameButtonClick" prefHeight="38.0" prefWidth="42.0" style="-fx-background-color: #964B00;" text="Ok" textFill="#e3e300">
+         <font>
+            <Font name="Harrington" size="16.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" layoutX="297.0" layoutY="233.0" prefHeight="38.0" prefWidth="230.0" text="Choose a wand " textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Harrington" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="209.0" fitWidth="652.0" layoutX="78.0" layoutY="281.0" opacity="0.7" pickOnBounds="true">
+         <image>
+            <Image url="@fondChoice.jpg" />
+         </image>
+      </ImageView>
+      <Line endX="-92.60000610351562" endY="130.70001220703125" layoutX="504.0" layoutY="354.0" startX="-92.60000610351562" startY="-69.19999694824219" />
+      <Label layoutX="539.0" layoutY="284.0" prefHeight="22.0" prefWidth="182.0" text="Vine Wand" textFill="#2f0a94" underline="true">
+         <font>
+            <Font name="Harrington" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="vine" fitHeight="69.0" fitWidth="118.0" layoutX="412.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@VineBand.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="196.0" layoutY="284.0" prefHeight="22.0" prefWidth="182.0" text="The Elder Wand" textFill="#2f0a94" underline="true">
+         <font>
+            <Font name="Harrington" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="phoenix" fitHeight="118.0" fitWidth="110.0" layoutX="294.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@phoenix_father.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="87.0" layoutY="353.0" prefHeight="22.0" prefWidth="182.0" text="Core : PHOENIX FEATHER" textFill="WHITE">
+         <font>
+            <Font name="Harrington" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="353.0" prefHeight="22.0" prefWidth="210.0" text="Core : DRAGON_HEARTSTRING" textFill="WHITE">
+         <font>
+            <Font name="Harrington" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="87.0" layoutY="395.0" prefHeight="22.0" prefWidth="182.0" text="Size : 10" textFill="WHITE">
+         <font>
+            <Font name="Harrington" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="395.0" prefHeight="22.0" prefWidth="182.0" text="Size : 3" textFill="WHITE">
+         <font>
+            <Font name="Harrington" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="elderwand" layoutX="283.0" layoutY="424.0" mnemonicParsing="false" onAction="#onElderClick" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #964B00;" text="Sélectionner" textFill="WHITE">
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Button fx:id="vinewand" layoutX="598.0" layoutY="424.0" mnemonicParsing="false" onAction="#onVineClick" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #964B00;" text="Sélectionner" textFill="WHITE">
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <Label fx:id="errormsg" layoutX="324.0" layoutY="76.0" prefHeight="22.0" prefWidth="312.0" textFill="RED">
+         <font>
+            <Font name="Harrington" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
