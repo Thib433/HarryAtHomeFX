@@ -8,6 +8,7 @@ import Levels.*;
 import Tools.Console;
 import Tools.SafeScanner;
 import Tools.SortingHat;
+import com.example.harryathomefx.GameControlleur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,9 +59,11 @@ public class Game {
     Enemy bellatrixLestrange;
     private SafeScanner scanner = new SafeScanner();
 
-    public void play(){ //Funciton who start the game
+    public void play(){ //Funciton who start the gam
+        //Console.log("vchzejvcbz");
         //Start of the Game
         while (true){
+
             playerName = Welcome();  //OK
             wand = chooseWand();    //Ok
             pet = choosePet();      //Ok
