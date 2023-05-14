@@ -7,8 +7,7 @@ import Tools.Console;
 public class Enemy extends Caracter{
 
     public Enemy(float health, float defense, float accuracy, boolean living, String name) {
-        super(health, defense, accuracy, living);
-        this.name = name;
+        super(health, defense, accuracy, living, name);
     }
 
     public boolean isDeadEnemy(float health){

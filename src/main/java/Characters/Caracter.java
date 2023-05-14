@@ -8,19 +8,20 @@ import Tools.Timer;
 import java.util.Random;
 
 public abstract class Caracter {
-
+    String name;
     float health; //Vie : entre 0 et 100 : à 0 le character est mort
      // Point de dégats ou d'attaque : puissance spécifique à chaque sort : entre 0 et 100;
-      String name;
+
     private float defense; //Point de défenses : 0 à 100, à aquérir pour le wizard
     private float accuracy; //Point de précision : 0 à 100, à aquérir
       boolean living;
 
-    public Caracter(float health, float defense, float accuracy, boolean living) {
+    public Caracter(float health, float defense, float accuracy, boolean living, String name) {
         this.health = health;
         this.defense = defense;
         this.accuracy = accuracy;
         this.living = living;
+        this.name=name;
     }
 
     public float attack(float powerSpell, Caracter targeted){

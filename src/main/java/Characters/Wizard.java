@@ -30,10 +30,9 @@ public class Wizard extends Caracter{
      List<object> inventory;
 
 
-    public Wizard(float health, float defense, float accuracy, boolean living, int level, String name, Wand wand, Pet pet, House house, List<Spell> knownSpells, List<Potion> potions, List<object> inventory) {
-        super(health, defense, accuracy, living);
+    public Wizard(float health, float defense, float accuracy, boolean living, int level,String name,  Wand wand, Pet pet, House house, List<Spell> knownSpells, List<Potion> potions, List<object> inventory) {
+        super(health, defense, accuracy, living, name);
         this.level = level;
-        this.name = name;
         this.wand = wand;
         this.pet = pet;
         this.house = house;
@@ -56,7 +55,8 @@ public class Wizard extends Caracter{
 
     public boolean isDeadWizard(float health){
         if (health <=0){
-            Console.log("oh no you're dead ! Game over");
+            //Console.log("oh no you're dead ! Game over");
+            deathToStop();
             living = false;
             return true;
         }else{
@@ -92,6 +92,7 @@ public class Wizard extends Caracter{
         timer.getTime(1000);
     }
     public void deathToStop(){
+        Console.log("Wizard dead ! Game over !");
         System.exit(0);
     }
 

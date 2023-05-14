@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public abstract class BaseController {
+public class BaseController {
     @FXML
-    protected AnchorPane windows;
+    AnchorPane windows;
 
     protected void loadPage(String pageName) {
         try {

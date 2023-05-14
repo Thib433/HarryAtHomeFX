@@ -51,7 +51,7 @@ public class Lev1 extends level {
             timer.getTime(1000);
             nbTry+=1;
         }
-        if (nbTry<=3){
+        if (nbTry<=100){
             Console.log("What efficiency ! Congratuation "+ wizard.getName());
             timer.getTime(1500);
             Console.log("You win a new spell : " + rewardSpell.getName()+ " and 2 new basic potions : "+rewardPotion.getName());

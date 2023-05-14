@@ -8,13 +8,13 @@ import Levels.*;
 import Tools.Console;
 import Tools.SafeScanner;
 import Tools.SortingHat;
-import com.example.harryathomefx.GameControlleur;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
+    //Pour interface graphique, stocker le nom choisi directement
+    String nameChoice;
     Lev1 lev1;
     Lev2 lev2;
     Lev3 lev3;
@@ -59,31 +59,15 @@ public class Game {
     Enemy bellatrixLestrange;
     private SafeScanner scanner = new SafeScanner();
 
-    public void play(){ //Funciton who start the gam
-        //Console.log("vchzejvcbz");
+    public void play(){ //Funciton who start the game
         //Start of the Game
         while (true){
-
-            playerName = Welcome();  //OK
-            wand = chooseWand();    //Ok
-            pet = choosePet();      //Ok
-            initialisePotions();    //Ok
-            createListPotion(skeleGro);     //Ok
-            createListPotion(essence);      //Ok
-            Console.log("You have at your disposal as Potion : Skele-Gro and essence");
-            initializeSpell();      //OK
-            createListSpells(wingLev);  //Ok
-            createListSpells(accio);    //Ok
-            Console.log("You have at your disposal as Spell : Wingardium Leviosa and Accio");
-            initializeHouse();  //OK
-            initializeInventory();   //Ok
-            createNewWizard(1, playerName, wand, pet, house, SpellKnowns, potions, inventory, 100, 40, 30, true);   //Ok
             startAssignement();     //Ok
             while (!wizard.isDeadWizard(wizard.getHealth())){
-                year1(wizard);
-                year2(wizard);
-                year3(wizard);
-                year4(wizard);
+                //year1(wizard);
+                //year2(wizard);
+                //year3(wizard);
+                //year4(wizard);
                 year5(wizard);
                 year6(wizard);
                 year7(wizard);
@@ -154,15 +138,24 @@ public class Game {
     }
     public void year6(Wizard wizard){
         Console.log("The Half-Blood Prince");
+        getTime(2000);
         lev6=new Lev6("The Half-Blood Prince", wizard, essence, expellia,Mangemorts);
+        Console.log("Kill all the mangemorts !...");
+        getTime(2000);
         lev6.attackMangemorts();
         endLevel(lev6);
     }
     public  void year7(Wizard wizard){
         Console.log("The Deathly Hallows\n");
-        Voldemorts = new Enemy( 100, 80, 60, true, "Voldemort");
-        bellatrixLestrange =  new Enemy(100, 40, 80, true, "Bellatrix Lestrange");
+        getTime(2000);
+        Console.log("There are still your two worst enemies! Kill them all !");
+        getTime(2000);
+        Voldemorts = new Enemy( 100, 50, 60, true, "Voldemort");
+        bellatrixLestrange =  new Enemy(100, 30, 50, true, "Bellatrix Lestrange");
         lev7 = new Lev7("The Deathly Hallows\n", wizard, Voldemorts, bellatrixLestrange);
+        lev7.attackOnBasilic();
+        Console.log("Congratulation !! You survived face to all the level and get the HarryAtHome diplome and win the game !");
+
     }
     public void endLevel(level level){ //End of all level
         Console.log("Congratulation ! You successfully survived to the level " +level.getName());
@@ -201,21 +194,21 @@ public class Game {
     }
     public void initializeHouse(){
         Console.log("Your house will now be raffled ! Wait a second ...");
-        getTime(1000);
+        //getTime(1000);
         SortingHat sortingHat = new SortingHat();
         house = sortingHat.attributeHouse(house);
         Console.log("Your new House is :" + house.toString());
-        getTime(300);
+        //getTime(300);
         //Console.log(house.name());
     }
-    public void createNewWizard(int level, String name, Wand wand, Pet pet, House house, List<Spell> Spellknowns, List<Potion> potions, List<object> inventory, int health, int defense, int accuracy, boolean living){ //create the new wizard with all the parametters
-        Console.log("Here your wizard !");
-        getTime(500);
-        wizard = new Wizard( health, defense, accuracy, living, level, name, wand, pet, house, Spellknowns, potions, inventory);
+    public Wizard createNewWizard(int level, String name, Wand wand, Pet pet, House house, List<Spell> Spellknowns, List<Potion> potions, int health, int defense, int accuracy, boolean living, List<object> inventory){ //create the new wizard with all the parametters
+
+        wizard  = new Wizard( health, defense, accuracy, living, level, name, wand, pet, house, Spellknowns, potions, inventory);
+        return wizard;
     }
     public void createListSpells(Spell spell){
         SpellKnowns.add(spell);
-        getTime(500);
+        //getTime(500);
     }
     public void initialisePotions(){
         skeleGro = new Potion("Skele-Gro", 35);
@@ -224,7 +217,7 @@ public class Game {
     }
     public void createListPotion(Potion potion){
         potions.add(potion);
-        getTime(500);
+        //getTime(500);
     }
     public Wand initializeWand(int choice){
         Wand choiceWand;
@@ -241,7 +234,7 @@ public class Game {
     }
     public void getTime(int time){
         try {
-            Thread.sleep(0);
+            Thread.sleep(time+500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -299,4 +292,221 @@ public class Game {
     //Faire tout les initialise
 
 
+    public Lev1 getLev1() {
+        return lev1;
+    }
+
+    public void setLev1(Lev1 lev1) {
+        this.lev1 = lev1;
+    }
+
+    public Wizard getWizard() {
+        return wizard;
+    }
+
+    public void setWizard(Wizard wizard) {
+        this.wizard = wizard;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public Wand getWand() {
+        return wand;
+    }
+
+    public void setWand(Wand wand) {
+        this.wand = wand;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public List<Potion> getPotions() {
+        return potions;
+    }
+
+    public void setPotions(List<Potion> potions) {
+        this.potions = potions;
+    }
+
+    public Potion getSkeleGro() {
+        return skeleGro;
+    }
+
+    public void setSkeleGro(Potion skeleGro) {
+        this.skeleGro = skeleGro;
+    }
+
+    public Potion getEssence() {
+        return essence;
+    }
+
+    public void setEssence(Potion essence) {
+        this.essence = essence;
+    }
+
+    public Potion getDraughtDeath() {
+        return draughtDeath;
+    }
+
+    public void setDraughtDeath(Potion draughtDeath) {
+        this.draughtDeath = draughtDeath;
+    }
+
+    public List<Spell> getSpellKnowns() {
+        return SpellKnowns;
+    }
+
+    public void setSpellKnowns(List<Spell> spellKnowns) {
+        SpellKnowns = spellKnowns;
+    }
+
+    public Spell getWingLev() {
+        return wingLev;
+    }
+
+    public void setWingLev(Spell wingLev) {
+        this.wingLev = wingLev;
+    }
+
+    public Spell getAccio() {
+        return accio;
+    }
+
+    public void setAccio(Spell accio) {
+        this.accio = accio;
+    }
+
+    public Spell getExpPatro() {
+        return expPatro;
+    }
+
+    public void setExpPatro(Spell expPatro) {
+        this.expPatro = expPatro;
+    }
+
+    public Spell getSectum() {
+        return sectum;
+    }
+
+    public void setSectum(Spell sectum) {
+        this.sectum = sectum;
+    }
+
+    public Spell getAvaKada() {
+        return avaKada;
+    }
+
+    public void setAvaKada(Spell avaKada) {
+        this.avaKada = avaKada;
+    }
+
+    public Spell getExpellia() {
+        return expellia;
+    }
+
+    public void setExpellia(Spell expellia) {
+        this.expellia = expellia;
+    }
+
+
+
+    public void setInventory(List<object> inventory) {
+        this.inventory = inventory;
+    }
+
+    public Enemy getTroll() {
+        return troll;
+    }
+
+    public void setTroll(Enemy troll) {
+        this.troll = troll;
+    }
+
+    public Enemy getBasilic() {
+        return Basilic;
+    }
+
+    public void setBasilic(Enemy basilic) {
+        Basilic = basilic;
+    }
+
+    public List<Enemy> getDetraqueurs() {
+        return Detraqueurs;
+    }
+
+    public void setDetraqueurs(List<Enemy> detraqueurs) {
+        Detraqueurs = detraqueurs;
+    }
+
+    public Enemy getVoldemorts() {
+        return Voldemorts;
+    }
+
+    public void setVoldemorts(Enemy voldemorts) {
+        Voldemorts = voldemorts;
+    }
+
+    public Enemy getPettigrow() {
+        return Pettigrow;
+    }
+
+    public void setPettigrow(Enemy pettigrow) {
+        Pettigrow = pettigrow;
+    }
+
+    public Enemy getDoloresOmbrage() {
+        return DoloresOmbrage;
+    }
+
+    public void setDoloresOmbrage(Enemy doloresOmbrage) {
+        DoloresOmbrage = doloresOmbrage;
+    }
+
+    public List<Enemy> getMangemorts() {
+        return Mangemorts;
+    }
+
+    public void setMangemorts(List<Enemy> mangemorts) {
+        Mangemorts = mangemorts;
+    }
+
+    public Enemy getBellatrixLestrange() {
+        return bellatrixLestrange;
+    }
+
+    public void setBellatrixLestrange(Enemy bellatrixLestrange) {
+        this.bellatrixLestrange = bellatrixLestrange;
+    }
+
+    public List<object> getInventory() {
+        return inventory;
+    }
+
+    public String getNameChoice() {
+        return nameChoice;
+    }
+
+    public void setNameChoice(String nameChoice) {
+        this.nameChoice = nameChoice;
+    }
 }

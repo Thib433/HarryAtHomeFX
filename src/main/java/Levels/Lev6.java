@@ -5,6 +5,7 @@ import Attribute.Spell;
 import Characters.Enemy;
 import Characters.Wizard;
 import Tools.Console;
+import Tools.Timer;
 //import lombok.Getter;
 //import lombok.Setter;
 
@@ -24,79 +25,97 @@ public class Lev6 extends level {
     Potion rewardPotion;
     //@Getter @Setter
     Spell rewardSpell;
+    int effciency = new Random().nextInt(10)+1;
 
 
     //@Getter @Setter
-    int nbMangemorts = new Random().nextInt(50);
+    int nbMangemorts = new Random().nextInt(200);
     //@Getter @Setter
     int effciencyAttack = new Random().nextInt(3);
     //@Getter @Setter
     List<Enemy> Mangemorts;
+    Timer timer = new Timer();
 
     public Lev6(String name, Wizard wizard, Potion rewardPotion, Spell rewardSpell, List<Enemy> mangemorts) {
         this.name = name;
         this.wizard = wizard;
         this.rewardPotion = rewardPotion;
         this.rewardSpell=rewardSpell;
-        Mangemorts = mangemorts;
+        this.Mangemorts = mangemorts;
     }
 
-    public List<Enemy> fillMangList(int nbMangemorts){
+    public List<Enemy> fillMangList(){
+        Timer timer = new Timer();
+        Console.log("Nb mangemorts");
+        Console.logFloat(nbMangemorts);
+        timer.getTime(1000);
         for (int i = 0; i < nbMangemorts; i++) {
-            Enemy mangemorts = new Enemy(100, 20, 0, true, "Mangemort"); //ou tout autre constructeur de Detraqueur
-            Mangemorts.add(mangemorts);
+            Enemy mangemort = new Enemy(100, 20, 0, true, "Mangemort"); //ou tout autre constructeur de Detraqueur
+            Mangemorts.add(mangemort);
         }
         return Mangemorts;
     }
     public void attackMangemorts() {
-        Mangemorts=fillMangList(nbMangemorts);
+        Mangemorts=fillMangList();
         int nbTry = 0;
-        Console.log("Choose Spell ! ");
+        Console.log("Choose the good spell ! ");
         Spell spell = wichSpell(wizard.getKnownSpells());
+        timer.getTime(1500);
         boolean isWinSpell = false;
-        while (isWinSpell) {
-            Console.log("Try to success the spell ! type [go]");
-            String go = scanner.getString();
-            if (Objects.equals(go, "go")){
-                isWinSpell =spell.isWinSpell(spell.getLuck());
-            }else isWinSpell = false;
+        while (!isWinSpell) {
+            isWinSpell=spell.trySpell(isWinSpell);
             //Test to know if the spell is success
         }
-        boolean isAllManDead = false;
-        while (isAllManDead) {
+        boolean isAllDetDead = false;
+        while (!isAllDetDead) {
             while(Mangemorts.size()>2){
                 int powerSpell = spell.getPowerSpell();
-                int damage = powerSpell*effciencyAttack;
+                Console.log("Power");
+                Console.logFloat(powerSpell);
+                timer.getTime(1000);
+                int damage = powerSpell+effciency;
+                timer.getTime(1000);
+                Console.log("Nb kills");
+                Console.logFloat(damage);
+                timer.getTime(1000);
                 for (int i=1; i<=damage;i++){
-                    deadMembList(Mangemorts);
+                    if (Mangemorts.size()>2){
+                        deadMembList(Mangemorts);
+                    }
                 }
+                Console.log("There are "+Mangemorts.size()+" mangemors left ! Continue...");
+                timer.getTime(1000);
+                nbTry += 1;
             }
-            isAllManDead = true;
-            nbTry += 1;
+            isAllDetDead = true;
         }
         if (wizard.isLiving()) {
-            if (nbTry==1){
-                Console.log("What efficiency ! Congratuation "+ wizard.getName());
-                Console.log("You win a new spell : " + rewardSpell.getName()+ " and 2 new basic potions : "+rewardPotion.getName());
+            if (nbTry < 4) {
+                Console.log("What efficiency ! Congratuation " + wizard.getName());
+                Console.log("You win 2 new basic potions : " + rewardPotion.getName());
+                wizard.getPotionReward(rewardPotion);
+                wizard.getPotionReward(rewardPotion);
                 wizard.getSpellReward(rewardSpell);
-                wizard.getPotionReward(rewardPotion);
-                wizard.getPotionReward(rewardPotion);
-
+                timer.getTime(2000);
                 //Reward next Spell +  2 new Potion
-
-            } else if (nbTry==2) {
-                Console.log("What a game ! you are on the good way "+ wizard.getName());
-                Console.log("You win a new spell : " + rewardSpell.getName()+ " and a new basic potions : "+rewardPotion.getName());
-                wizard.getSpellReward(rewardSpell);
+            } else
+            //if (nbTry == 2)
+            {
+                Console.log("What a game ! you are on the good way " + wizard.getName());
+                Console.log("You win a new basic potions : " + rewardPotion.getName());
                 wizard.getPotionReward(rewardPotion);
-                //Reward next Spell + 1 new Potion
-            }else{
-                Console.log("You win the level ! Be more efficient the next time, you'll win more potion and chance to go far in the game  "+ wizard.getName());
-                Console.log("You win a new spell " +rewardSpell.getName());
                 wizard.getSpellReward(rewardSpell);
-                //Reward next spell
+                timer.getTime(2000);
+                //Reward next Spell + 1 new Potion
             }
-
+//            else {
+//                Console.log("You win the level ! Be more efficient the next time, you'll win more potion and chance to go far in the game  " + wizard.getName());
+//                wizard.getSpellReward(rewardSpell);
+//                //Reward next spell
+//            }
+        } else {
+            Console.log("Oh no your didn't survive face to the Basilic :/");
+            wizard.deathToStop();
         }
     }
     public void deadMembList(List<Enemy> listEnemy){
