@@ -64,10 +64,10 @@ public class Game {
         while (true){
             startAssignement();     //Ok
             while (!wizard.isDeadWizard(wizard.getHealth())){
-                //year1(wizard);
-                //year2(wizard);
-                //year3(wizard);
-                //year4(wizard);
+                year1(wizard);
+                year2(wizard);
+                year3(wizard);
+                year4(wizard);
                 year5(wizard);
                 year6(wizard);
                 year7(wizard);
